@@ -7,24 +7,23 @@ import {CardActionArea} from '@mui/material';
 
 interface PropsType {
     email: string,
-    first_name: string,
-    last_name: string,
+    name: string,
     avatar: string
 }
 
 const UserCard = (props: PropsType) => {
     return (
-        <Card sx={{maxWidth: 345}}>
+        <Card sx={{width: 250}}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="200"
                     image={props.avatar}
-                    alt="green iguana"
+                    alt="user profile"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {props.first_name}{props.last_name}
+                        {props.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {props.email}
