@@ -15,7 +15,7 @@ interface PropsType {
 
 const UserCard = (props: PropsType) => {
     return (
-        <Link to={'/user/' + props.id}>
+        <Link to={`/user/${props.id}`}>
             <Card sx={{width: 250}}>
                 <CardActionArea>
                     <CardMedia

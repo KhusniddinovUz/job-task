@@ -9,7 +9,7 @@ type userType = {
     first_name: string,
     last_name: string,
     avatar: string;
-}[]
+}[];
 
 const Home: React.FC = () => {
     const [users, setUsers] = React.useState<userType>([])
@@ -25,8 +25,8 @@ const Home: React.FC = () => {
         <div>
             <Grid container justifyContent='center' alignItems='center' spacing={5}>
                 {users && users.map(user => {
-                    return (<Grid justifyContent='center' alignItems='center' item xs='auto'>
-                        <UserCard email={user.email} name={user.first_name + user.last_name}
+                    return (<Grid key={user.id} justifyContent='center' alignItems='center' item xs='auto'>
+                        <UserCard email={user.email} name={`${user.first_name}${user.last_name}`}
                                   avatar={user.avatar} id={user.id}/>
                     </Grid>)
                 })}
