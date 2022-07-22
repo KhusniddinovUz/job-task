@@ -1,10 +1,15 @@
 import React from 'react';
 import Home from "./components/Home";
+import UserPage from "./components/UserPage";
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
     return (
         <div className="App">
-            <Home/>
+            <Routes>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/user/:id' element={<UserPage/>}/>
+            </Routes>
         </div>
     );
 }

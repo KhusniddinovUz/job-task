@@ -27,7 +27,7 @@ const Home: React.FC = () => {
                 {users && users.map(user => {
                     return (<Grid justifyContent='center' alignItems='center' item xs='auto'>
                         <UserCard email={user.email} name={user.first_name + user.last_name}
-                                  avatar={user.avatar}/>
+                                  avatar={user.avatar} id={user.id}/>
                     </Grid>)
                 })}
             </Grid>
