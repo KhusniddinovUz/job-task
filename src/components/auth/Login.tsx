@@ -1,37 +1,34 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
-const Register: React.FC = () => {
+const Login: React.FC = () => {
     return (
         <div className='Register'>
             <div id='form'>
                 <div>
                     <p>Welcome to Reqres</p>
                     <div>
-                        <p>Have an account?</p>
-                        <Link to={'/login'} className="main-color" style={{fontWeight: 600, fontSize: "18px"}}>
-                            Login
+                        <p>No account?</p>
+                        <Link to={'/register'} className="main-color" style={{fontWeight: 600, fontSize: "18px"}}>
+                            Register
                         </Link>
                     </div>
                 </div>
-                <h1>Register</h1>
+                <h1>Login</h1>
+
                 <form>
-                    <div className="form-group">
+                    <div className="form-group login">
                         <p className="form-text">Enter your email address</p>
                         <input type="email" className="form-input" placeholder="Name@example.com"/>
                     </div>
-                    <div className="form-group">
-                        <p className="form-text">Enter your username</p>
-                        <input type="text" className="form-input" placeholder="Username"/>
-                    </div>
-                    <div className="form-group">
+                    <div className="form-group login">
                         <p className="form-text">Enter your password</p>
                         <input type="password" className="form-input" placeholder="Password"/>
                     </div>
-                    <button type="submit">Register</button>
+                    <button type="submit" className='login-button'>Login</button>
                 </form>
             </div>
         </div>)
 };
 
-export default Register;
+export default Login;
