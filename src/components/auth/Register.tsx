@@ -1,9 +1,13 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
+import {useAppSelector} from "../../redux/hooks";
+import {Navigate} from "react-router-dom";
 
 const Register: React.FC = () => {
+    const auth = useAppSelector(state => state.auth.isAuthenticated);
     return (
         <div className='Register'>
+            {auth && <Navigate replace to='/'/>}
             <div id='form'>
                 <div>
                     <p>Welcome to Reqres</p>
