@@ -1,13 +1,18 @@
 import * as React from "react";
 import {Link} from 'react-router-dom';
 import {useAppSelector} from "../../redux/hooks";
-import {Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Login: React.FC = () => {
     const auth = useAppSelector(state => state.auth.isAuthenticated);
+    const navigate = useNavigate();
+    React.useEffect(() => {
+        if (auth) {
+            navigate('/', {replace: true});
+        }
+    }, [auth, navigate])
     return (
         <div className='Register'>
-            {auth && <Navigate replace to='/'/>}
             <div id='form'>
                 <div>
                     <p>Welcome to Reqres</p>
