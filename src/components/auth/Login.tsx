@@ -7,9 +7,11 @@ import {bindActionCreators} from "redux";
 import {RootState} from "../../store";
 import {authState} from "../../redux/reducers/auth";
 import {useSelector} from "react-redux";
+import loader from '../loading.svg';
 
 const Login: React.FC = () => {
     const auth = useSelector<RootState, authState>(state => state.auth);
+    const loading = useSelector<RootState, boolean>(state => state.loading);
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -55,7 +57,8 @@ const Login: React.FC = () => {
                         <input required onChange={passwordHandler} type="password" className="form-input"
                                placeholder="Password"/>
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit">{loading ? <img src={loader} alt="loading"/> : "Login"}
+                    </button>
                 </form>
             </div>
         </div>)

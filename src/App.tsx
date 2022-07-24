@@ -2,7 +2,6 @@ import React from 'react';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
-import {useAppSelector} from "./redux/hooks";
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
 import {useSelector} from "react-redux";

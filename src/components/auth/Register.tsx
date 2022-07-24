@@ -6,11 +6,14 @@ import {authState} from "../../redux/reducers/auth";
 import {useSelector} from "react-redux";
 import {bindActionCreators} from "redux";
 import {register} from "../../redux/action-creaters/auth";
+import loader from "../loading.svg";
+
 
 const Register: React.FC = () => {
     const dispatch = useAppDispatch();
     const reg = bindActionCreators(register, dispatch);
     const auth = useSelector<RootState, authState>(state => state.auth);
+    const loading = useSelector<RootState, boolean>(state => state.loading);
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
     const [email, setEmail] = React.useState("");
@@ -54,7 +57,8 @@ const Register: React.FC = () => {
                         <input onChange={passwordHandler} required type="password" className="form-input"
                                placeholder="Password"/>
                     </div>
-                    <button type="submit">Register</button>
+                    <button type="submit">{loading ? <img src={loader} alt="loading"/> : "Register"}
+                    </button>
                 </form>
             </div>
         </div>)
