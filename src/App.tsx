@@ -13,7 +13,6 @@ import {authState} from "./redux/reducers/auth";
 function App() {
     const navigate = useNavigate();
     const location = useLocation();
-    // const auth = useAppSelector(state => state.auth.isAuthenticated);
     const auth = useSelector<RootState, authState>(state => state.auth);
     const {isAuthenticated} = auth;
     React.useEffect(() => {
