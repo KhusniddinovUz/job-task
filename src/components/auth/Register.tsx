@@ -1,12 +1,17 @@
 import * as React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../redux/hooks";
+import {RootState} from "../../store";
+import {authState} from "../../redux/reducers/auth";
+import {useSelector} from "react-redux";
 
 const Register: React.FC = () => {
-    const auth = useAppSelector(state => state.auth.isAuthenticated);
+    // const auth = useAppSelector(state => state.auth.isAuthenticated);
+    const auth = useSelector<RootState, authState>(state => state.auth);
+    const {isAuthenticated} = auth;
     const navigate = useNavigate();
     React.useEffect(() => {
-        if (auth) {
+        if (isAuthenticated) {
             navigate('/', {replace: true});
         }
     }, [auth, navigate])
