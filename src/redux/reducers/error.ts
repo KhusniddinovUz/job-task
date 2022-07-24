@@ -6,13 +6,9 @@ const initialState = "";
 const error = (state: string = initialState, action: Error) => {
     switch (action.type) {
         case ErrorTypes.ADD_ERROR:
-            return {
-                initialState: action.payload,
-            }
+            return action.payload;
         case ErrorTypes.REMOVE_ERROR:
-            return {
-                initialState: "",
-            }
+            return "";
         default:
             return state
     }

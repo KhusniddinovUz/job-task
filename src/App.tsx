@@ -1,10 +1,11 @@
 import React from 'react';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import Home from "./components/Home";
 import UserPage from "./components/UserPage";
+import Alerts from "./components/Alerts";
 import {useSelector} from "react-redux";
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import {RootState} from "./store";
 import {authState} from "./redux/reducers/auth";
 
@@ -25,6 +26,7 @@ function App() {
     }, [isAuthenticated, location.pathname, navigate])
     return (
         <div className="App">
+            <Alerts/>
             <Routes>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>

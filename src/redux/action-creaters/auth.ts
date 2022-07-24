@@ -1,6 +1,7 @@
 import axios from "axios";
 import {AuthActionTypes} from "../action-types/auth";
 import {LoadingTypes} from "../action-types/loading";
+import {ErrorTypes} from "../action-types/error";
 import {Dispatch} from "redux";
 
 export const login = (data: { email: string, password: string }) => {
@@ -19,6 +20,10 @@ export const login = (data: { email: string, password: string }) => {
             });
         }).catch(error => {
             console.log(error.response.data.error);
+            dispatch({
+                type: ErrorTypes.ADD_ERROR,
+                payload: error.response.data.error,
+            });
             dispatch({
                 type: AuthActionTypes.LOGIN_FAIL
             });
@@ -48,6 +53,10 @@ export const register = (data: { email: string, password: string }) => {
             });
         }).catch(error => {
             console.log(error.response.data.error);
+            dispatch({
+                type: ErrorTypes.ADD_ERROR,
+                payload: error.response.data.error,
+            });
             dispatch({
                 type: AuthActionTypes.REGISTER_FAIL
             });
