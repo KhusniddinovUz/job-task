@@ -1,12 +1,16 @@
 import * as React from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {useAppSelector} from "../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../redux/hooks";
 import {RootState} from "../../store";
 import {authState} from "../../redux/reducers/auth";
 import {useSelector} from "react-redux";
+import {bindActionCreators} from "redux";
+import {register} from "../../redux/action-creaters/auth";
 
 const Register: React.FC = () => {
     // const auth = useAppSelector(state => state.auth.isAuthenticated);
+    const dispatch = useAppDispatch();
+    const reg = bindActionCreators(register, dispatch);
     const auth = useSelector<RootState, authState>(state => state.auth);
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
@@ -14,7 +18,7 @@ const Register: React.FC = () => {
         if (isAuthenticated) {
             navigate('/', {replace: true});
         }
-    }, [auth, navigate])
+    }, [isAuthenticated, navigate])
     return (
         <div className='Register'>
             <div id='form'>
@@ -28,7 +32,11 @@ const Register: React.FC = () => {
                     </div>
                 </div>
                 <h1>Register</h1>
-                <form>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    reg({email: "eve.holt@reqres.ins", password: "pistol"})
+
+                }}>
                     <div className="form-group">
                         <p className="form-text">Enter your email address</p>
                         <input type="email" className="form-input" placeholder="Name@example.com"/>

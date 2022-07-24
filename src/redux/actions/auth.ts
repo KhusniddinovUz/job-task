@@ -9,4 +9,13 @@ interface LoginFail {
     type: AuthActionTypes.LOGIN_FAIL;
 }
 
-export type AuthAction = LoginSuccess | LoginFail;
+interface RegisterSuccess {
+    type: AuthActionTypes.REGISTER_SUCCESS;
+    payload: string;
+}
+
+interface RegisterFail {
+    type: AuthActionTypes.REGISTER_FAIL;
+}
+
+export type AuthAction = LoginSuccess | LoginFail | RegisterSuccess | RegisterFail;

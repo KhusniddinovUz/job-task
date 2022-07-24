@@ -14,7 +14,7 @@ const Login: React.FC = () => {
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const login1 = bindActionCreators(login, dispatch)
+    const log = bindActionCreators(login, dispatch)
     React.useEffect(() => {
         if (isAuthenticated) {
             navigate('/', {replace: true});
@@ -36,7 +36,7 @@ const Login: React.FC = () => {
 
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    login1({email: "michael.lawson@reqres.in", password: "khus04011212"});
+                    log({email: "michael.lawson@reqres.in", password: "khus04011212"});
                 }}>
                     <div className="form-group login">
                         <p className="form-text">Enter your email address</p>

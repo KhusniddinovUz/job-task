@@ -15,7 +15,7 @@ const auth = (state = initialState, action: AuthAction) => {
     switch (action.type) {
         case AuthActionTypes.LOGIN_SUCCESS:
             return {
-                isAuthenticated: false,
+                isAuthenticated: true,
                 token: action.payload,
             }
         case AuthActionTypes.LOGIN_FAIL:
@@ -23,6 +23,17 @@ const auth = (state = initialState, action: AuthAction) => {
                 isAuthenticated: false,
                 token: null,
             }
+        case AuthActionTypes.REGISTER_SUCCESS:
+            return {
+                isAuthenticated: true,
+                token: action.payload
+            }
+        case AuthActionTypes.REGISTER_FAIL: {
+            return {
+                isAuthenticated: false,
+                token: null
+            }
+        }
         default:
             return state
     }
