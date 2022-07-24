@@ -1,4 +1,4 @@
-$main-color: #08446B;
+$main-color: #1976D2;
 
 * {
     margin: 0;
@@ -21,7 +21,6 @@ $main-color: #08446B;
 }
 
 .App {
-    margin-top: 30px;
     margin-bottom: 30px;
 
     .Register {
@@ -82,6 +81,20 @@ $main-color: #08446B;
                     color: #fff;
                 }
 
+            }
+        }
+    }
+
+    #Navbar {
+        padding: 0 10%;
+        margin: auto;
+
+        .navbar-link {
+            color: #fff !important;
+            margin-right: 40px;
+
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

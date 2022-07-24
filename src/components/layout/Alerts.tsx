@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useSelector} from "react-redux";
-import {useAppDispatch} from "../redux/hooks";
-import {removeError} from "../redux/action-creaters/error";
+import {useAppDispatch} from "../../redux/hooks";
+import {removeError} from "../../redux/action-creaters/error";
 import {bindActionCreators} from "redux";
-import {RootState} from "../store";
+import {RootState} from "../../store";
 import {useAlert,} from 'react-alert';
 
 const Alerts: React.FC = () => {
