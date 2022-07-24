@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from 'react-router-dom';
-import {useAppSelector, useAppDispatch} from "../../redux/hooks";
+import {useAppDispatch} from "../../redux/hooks";
 import {useNavigate} from "react-router-dom";
 import {login} from "../../redux/action-creaters/auth";
 import {bindActionCreators} from "redux";
@@ -9,12 +9,19 @@ import {authState} from "../../redux/reducers/auth";
 import {useSelector} from "react-redux";
 
 const Login: React.FC = () => {
-    // const auth = useAppSelector(state => state.auth.isAuthenticated);
     const auth = useSelector<RootState, authState>(state => state.auth);
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const log = bindActionCreators(login, dispatch)
+    const log = bindActionCreators(login, dispatch);
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+    const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    }
     React.useEffect(() => {
         if (isAuthenticated) {
             navigate('/', {replace: true});
@@ -36,17 +43,19 @@ const Login: React.FC = () => {
 
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    log({email: "michael.lawson@reqres.in", password: "khus04011212"});
+                    log({email: email, password: password});
                 }}>
-                    <div className="form-group login">
+                    <div className="form-group">
                         <p className="form-text">Enter your email address</p>
-                        <input type="email" className="form-input" placeholder="Name@example.com"/>
+                        <input required onChange={emailHandler} type="email" className="form-input"
+                               placeholder="Name@example.com"/>
                     </div>
-                    <div className="form-group login">
+                    <div className="form-group">
                         <p className="form-text">Enter your password</p>
-                        <input type="password" className="form-input" placeholder="Password"/>
+                        <input required onChange={passwordHandler} type="password" className="form-input"
+                               placeholder="Password"/>
                     </div>
-                    <button type="submit" className='login-button'>Login</button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         </div>)

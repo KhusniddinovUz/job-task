@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../redux/hooks";
+import {useAppDispatch} from "../../redux/hooks";
 import {RootState} from "../../store";
 import {authState} from "../../redux/reducers/auth";
 import {useSelector} from "react-redux";
@@ -8,12 +8,19 @@ import {bindActionCreators} from "redux";
 import {register} from "../../redux/action-creaters/auth";
 
 const Register: React.FC = () => {
-    // const auth = useAppSelector(state => state.auth.isAuthenticated);
     const dispatch = useAppDispatch();
     const reg = bindActionCreators(register, dispatch);
     const auth = useSelector<RootState, authState>(state => state.auth);
     const {isAuthenticated} = auth;
     const navigate = useNavigate();
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+    };
+    const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(e.target.value);
+    }
     React.useEffect(() => {
         if (isAuthenticated) {
             navigate('/', {replace: true});
@@ -34,20 +41,18 @@ const Register: React.FC = () => {
                 <h1>Register</h1>
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    reg({email: "eve.holt@reqres.ins", password: "pistol"})
+                    reg({email: email, password: password})
 
                 }}>
                     <div className="form-group">
                         <p className="form-text">Enter your email address</p>
-                        <input type="email" className="form-input" placeholder="Name@example.com"/>
-                    </div>
-                    <div className="form-group">
-                        <p className="form-text">Enter your username</p>
-                        <input type="text" className="form-input" placeholder="Username"/>
+                        <input onChange={emailHandler} required type="email" className="form-input"
+                               placeholder="Name@example.com"/>
                     </div>
                     <div className="form-group">
                         <p className="form-text">Enter your password</p>
-                        <input type="password" className="form-input" placeholder="Password"/>
+                        <input onChange={passwordHandler} required type="password" className="form-input"
+                               placeholder="Password"/>
                     </div>
                     <button type="submit">Register</button>
                 </form>
